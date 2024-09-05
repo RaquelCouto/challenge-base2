@@ -127,3 +127,16 @@
 
 #### Expected Results
 - Verificar se a seguinte mensagem de texto aparece na tela: "Um campo necessário 'category' estava vazio. Por favor, verifique novamente suas entradas."
+
+
+### Configurações para executar o projeto
+1. Criar um arquivo config.properties dentro da pasta src contendo
+username=seu_user
+password=sua_senha
+2. O chrome driver utilizado está dentro da pasta do projeto
+3. Algumas configurações da máquina utilizada no desenvolvimento:
+Maven: apache-maven-3.9.9
+Java version: 22.0.2, vendor: Oracle Corporation
+Default locale: pt_BR, platform encoding: UTF-8
+OS name: "windows 11", version: "10.0", arch: "amd64", family: "windows"
+
