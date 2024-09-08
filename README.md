@@ -167,55 +167,63 @@
 
 #### Test Steps
 1. Logar em [MantisBT](https://mantis-prova.base2.com.br)
-2.
-3. 
-4.
+2. Clicar no ícone com o seu usuário ao lado > minha conta
+3. Caso necessário, digite sua senha novamente
+4. Selecionar a aba perfís
+5. Preencher os campos obrigatórios
+6. Clicar no botão de criar perfil
 
 #### Expected Results
-- 
+- Verifique na tabela de Perfil ao final da página se o perfil foi criado corretamente.
 ---
 
 ### Can delete a Profile Created
 
 #### Initial Setup
-- 
+- Ter um perfil criado
 
 #### Test Steps
 1. Logar em [MantisBT](https://mantis-prova.base2.com.br)
-2.
-3. 
-4.
-
+2. Clicar no ícone com o seu usuário ao lado > minha conta
+3. Caso necessário, digite sua senha novamente
+4. Selecionar a aba perfís
+5. Ao final da página, verifique a tabela de perfís
+6. Tente deletar um perfil
 #### Expected Results
-
+- O perfil deve ser deletado e não mais listado na tabela de perfís
 ---
 
 ### Can not delete (Select)
 
 #### Initial Setup
-- 
+- Ter um perfil criado
 
 #### Test Steps
 1. Logar em [MantisBT](https://mantis-prova.base2.com.br)
-2.
-3. 
-4.
+2. Clicar no ícone com o seu usuário ao lado > minha conta
+3. Caso necessário, digite sua senha novamente
+4. Selecionar a aba perfís
+5. Ao final da página, verifique a tabela de perfís
+6. Tente deletar a opção '(selecione)'
 
 #### Expected Results
-
+- Uma mensagem de erro deve informar que nenhum perfil foi selecionado para deleção
 ---
 ### Can create a task using a profile created
 
 #### Initial Setup
-- 
+- Ter um perfil criado
 
 #### Test Steps
 1. Logar em [MantisBT](https://mantis-prova.base2.com.br)
-2.
-3. 
-4.
-
+2. Clicar em "Criar Tarefa"
+3. Escolher uma categoria
+4. No campo de perfís, selecione um pefil previamente criado
+5. No campo "Resumo", adicionar uma string com dígitos non-ASCII
+6. No campo "Descrição", adicionar uma string com dígitos non-ASCII
+7. Clicar no botão "Criar Nova Tarefa"
 #### Expected Results
+- Verificar se o perfil é criado corretamente
 
 ### Configurações para executar o projeto
 1. Criar um arquivo config.properties dentro da pasta src contendo
