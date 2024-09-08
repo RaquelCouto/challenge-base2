@@ -128,6 +128,94 @@
 #### Expected Results
 - Verificar se a seguinte mensagem de texto aparece na tela: "Um campo necessário 'category' estava vazio. Por favor, verifique novamente suas entradas."
 
+---
+
+### Can't login with wrong password
+
+#### Initial Setup
+- Already have an account in MantisBT
+
+#### Test Steps
+1. Access [MantisBT](https://mantis-prova.base2.com.br)
+2. Type your user name
+3. In password field type a wrong password
+4. Clique para logar
+
+#### Expected Results
+- Verify that the site does not allow the login using a wrong password.
+---
+
+### Can login with wrong password
+
+#### Initial Setup
+- Already have an account in MantisBT
+
+#### Test Steps
+1. Access [MantisBT](https://mantis-prova.base2.com.br)
+2. Type your user name
+3. In password field type your password
+4. Clique para logar
+
+#### Expected Results
+- Verify that the site allows the login.
+
+---
+### Can create a new Profile
+
+#### Initial Setup
+- 
+
+#### Test Steps
+1. Logar em [MantisBT](https://mantis-prova.base2.com.br)
+2.
+3. 
+4.
+
+#### Expected Results
+- 
+---
+
+### Can delete a Profile Created
+
+#### Initial Setup
+- 
+
+#### Test Steps
+1. Logar em [MantisBT](https://mantis-prova.base2.com.br)
+2.
+3. 
+4.
+
+#### Expected Results
+
+---
+
+### Can not delete (Select)
+
+#### Initial Setup
+- 
+
+#### Test Steps
+1. Logar em [MantisBT](https://mantis-prova.base2.com.br)
+2.
+3. 
+4.
+
+#### Expected Results
+
+---
+### Can create a task using a profile created
+
+#### Initial Setup
+- 
+
+#### Test Steps
+1. Logar em [MantisBT](https://mantis-prova.base2.com.br)
+2.
+3. 
+4.
+
+#### Expected Results
 
 ### Configurações para executar o projeto
 1. Criar um arquivo config.properties dentro da pasta src contendo
