@@ -11,14 +11,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class CreateTaskPage {
     private WebDriver driver;
     private WebDriverWait wait;
+    private LoginPage loginPage;
 
     public CreateTaskPage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
         this.wait = wait;
+        this.loginPage = new LoginPage(driver, wait);
     }
 
     public void navigateToCreateTaskPage() {
-        waitForPageLoad();
+        loginPage.waitForPageLoad();
         WebElement criarTarefa = driver.findElement(By.cssSelector("#sidebar .nav li:nth-of-type(3)"));
         wait.until(ExpectedConditions.visibilityOf(criarTarefa));
         criarTarefa.click();
@@ -47,17 +49,17 @@ public class CreateTaskPage {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView(true);", createNewTaskButton);
         createNewTaskButton.click();
-        waitForPageLoad();
+        loginPage.waitForPageLoad();
     }
 
     public void verifyTaskCreated(String expectedSummaryText) {
-        waitForPageLoad();
+        loginPage.waitForPageLoad();
         WebElement verTarefas = driver.findElement(By.xpath("//*[@id='sidebar']/ul/li[2]/a/i"));
         wait.until(ExpectedConditions.visibilityOf(verTarefas));
         verTarefas.click();
 
         WebElement tbody = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#buglist tbody")));
-        waitForPageLoad();
+        loginPage.waitForPageLoad();
         WebElement cell = tbody.findElement(By.cssSelector(".column-summary"));
         String actualText = cell.getText();
 
@@ -75,11 +77,9 @@ public class CreateTaskPage {
         }
     }
 
-    private void waitForPageLoad() {
-        try {
-            Thread.sleep(4000); 
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    public void selectProfile(int index) {
+        Select profileID = new Select(driver.findElement(By.id("profile_id")));
+        profileID.selectByIndex(index);
     }
+
 }

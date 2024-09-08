@@ -22,27 +22,16 @@ public class SeeTasksPage {
     private static final String FILE_PATTERN = "^.*_Project\\\\.(xml|csv|temp)$";
     private WebDriver driver;
     private WebDriverWait wait;
+    private LoginPage loginPage;
 
     public SeeTasksPage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
         this.wait = wait;
-    }
-
-    public void login(String username, String password) {
-        driver.get("https://mantis-prova.base2.com.br");
-
-        driver.findElement(By.id("username")).sendKeys(username);
-        driver.findElement(By.className("width-40")).click();
-
-        WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("password")));
-        passwordField.sendKeys(password);
-        driver.findElement(By.className("width-40")).click();
-
-        waitForPageLoad();
+        this.loginPage = new LoginPage(driver, wait);
     }
 
     public void navigateToAllTasks() {
-        waitForPageLoad();
+        loginPage.waitForPageLoad();
         WebElement seeAllTasks = driver.findElement(By.cssSelector("#sidebar .nav li:nth-of-type(2)"));
         wait.until(ExpectedConditions.visibilityOf(seeAllTasks)).click();
     }
@@ -58,7 +47,7 @@ public class SeeTasksPage {
     public void submitTask() {
         WebElement createNewTaskButton = driver.findElement(By.className("btn"));
         createNewTaskButton.click();
-        waitForPageLoad();
+        loginPage.waitForPageLoad();
     }
 
     public void applyMarkers(String markerText, int markerIndex) {
@@ -98,11 +87,11 @@ public class SeeTasksPage {
     }
 
     public void applyFilter(int statusIndex, String expectedText) {
-        waitForPageLoad();
+        loginPage.waitForPageLoad();
         WebElement statusFilter = driver.findElement(By.cssSelector(".small-caption #show_status_filter"));
         wait.until(ExpectedConditions.visibilityOf(statusFilter)).click();
 
-        waitForPageLoad();
+        loginPage.waitForPageLoad();
         WebElement statusSelector = driver.findElement(By.cssSelector(".input-xs[name='status[]']"));
         Select statusSelect = new Select(statusSelector);
         statusSelect.selectByIndex(statusIndex);
@@ -115,15 +104,6 @@ public class SeeTasksPage {
         assertTrue(actualText.contains(expectedText), "Expected text is not present!");
     }
 
-    public void waitForPageLoad() {
-        try {
-            Thread.sleep(4000); // Use explicit waits instead for more robust solutions
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-
 
     public boolean isFileDownloaded(String downloadPath) {
         File dir = new File(downloadPath);
@@ -135,13 +115,11 @@ public class SeeTasksPage {
             for (File file : dirContents) {
                 Matcher matcher = pattern.matcher(file.getName());
                 if (matcher.matches()) {
-                    // Arquivo encontrado e corresponde ao padrão regex
                     return true;
                 }
             }
         }
 
-        // Nenhum arquivo encontrado que corresponda ao padrão regex
         return false;
     }
 

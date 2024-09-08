@@ -1,11 +1,7 @@
 package com.example;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.time.Duration;
-import java.util.Properties;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,6 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import java.time.Duration;
 
 import com.example.Pages.*;
 
@@ -23,15 +20,20 @@ public class SeeTasksTest {
     private WebDriver driver;
     private WebDriverWait wait;
     private SeeTasksPage seeTasksPage;
-    private String username;
-    private String password;
+    private LoginPage loginPage;
 
     @BeforeEach
     public void setUp() throws IOException {
-        loadCredentials();
-        initializeDriver();
+        System.setProperty("webdriver.chrome.driver", "drivers\\chromedriver-win64\\chromedriver-win64\\chromedriver.exe");
+        driver = new ChromeDriver();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    
         seeTasksPage = new SeeTasksPage(driver, wait);
-        seeTasksPage.login(username, password);
+        loginPage = new LoginPage(driver, wait);
+    
+        loginPage.loadCredentials();
+        loginPage.login();
+        
     }
 
     @AfterEach
@@ -92,19 +94,5 @@ public class SeeTasksTest {
         seeTasksPage.applyFilter(5, "atribuído");
     }
 
-    private void loadCredentials() throws IOException {
-        Properties properties = new Properties();
-        try (FileInputStream fis = new FileInputStream("src\\config.properties")) {
-            properties.load(fis);
-        }
-        username = properties.getProperty("username");
-        password = properties.getProperty("password");
-    }
-
-    private void initializeDriver() {
-        System.setProperty("webdriver.chrome.driver", "drivers\\chromedriver-win64\\chromedriver-win64\\chromedriver.exe");
-        driver = new ChromeDriver();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-    }
 }
 
